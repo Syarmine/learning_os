@@ -20,6 +20,9 @@ step, no server, no network — everything is self-contained.
 - **Decision playground** — “which surface + mechanism should I use?”
 - **Animated diagrams** — the agent loop, fan-out vs. pipeline, MCP/Connectors,
   and the hook lifecycle.
+- **Mastery Challenge** — a capstone assessment mixing every stage's questions,
+  ordered Novice → Expert, returning a final mastery verdict on the DIKW/Dreyfus
+  spine (best score saved).
 
 ## Files
 
@@ -29,7 +32,7 @@ step, no server, no network — everything is self-contained.
 | `js/app.js` | Bootstrap: onboarding, header, lens/theme, view switching. |
 | `js/state.js` | Progress + preferences in `localStorage` (namespaced by module id). |
 | `js/path.js` | The guided curriculum view. |
-| `js/quiz.js` · `conceptmap.js` · `diagrams.js` · `playground.js` | The four interactives. |
+| `js/quiz.js` · `conceptmap.js` · `diagrams.js` · `playground.js` · `challenge.js` | The interactives + capstone. |
 | `js/util.js` | Shared rendering helpers. |
 | `css/styles.css` | Design system (light/dark, responsive). |
 

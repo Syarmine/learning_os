@@ -395,6 +395,19 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1.1rem 4rem; }
 .pg-btn.ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); }
 .pg-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+/* ---------- Mastery Challenge ---------- */
+.ch-progress { position: sticky; top: 92px; z-index: 20; height: 26px; background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; margin: 0 0 1.2rem; overflow: hidden; display: flex; align-items: center; }
+.ch-progress-bar { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, var(--accent), var(--accent-3)); transition: width .3s; border-radius: 999px; }
+.ch-progress-label { position: relative; z-index: 1; margin: 0 auto; font-size: .78rem; font-weight: 800; color: var(--text); mix-blend-mode: difference; }
+.ch-tier-head { margin: 1.4rem 0 .5rem; }
+.ch-tier-badge { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-3)); padding: .25rem .7rem; border-radius: 999px; }
+.q-opts .opt.sel { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); font-weight: 600; }
+.ch-meter { display: flex; gap: 6px; margin: .8rem 0; }
+.ch-meter-seg { flex: 1; height: 12px; border-radius: 6px; background: var(--border-strong); transition: background .4s; }
+.ch-meter-seg.on { background: linear-gradient(90deg, var(--accent), var(--accent-3)); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 40%, transparent); }
+
 /* ---------- Onboarding overlay ---------- */
 .overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1.2rem;
   background: color-mix(in srgb, var(--bg) 55%, rgba(0,0,0,0.55)); backdrop-filter: blur(6px); }

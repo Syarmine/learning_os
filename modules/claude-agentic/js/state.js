@@ -13,7 +13,8 @@ const DEFAULTS = {
   lessonsDone: {},           // `${stageId}/${lessonId}` -> true
   answers: {},               // stageId -> { qIndex -> chosenIndex }
   openStage: null,           // last-opened stage id (for path view)
-  view: 'path',              // 'path' | 'map' | 'playground'
+  view: 'path',              // 'path' | 'map' | 'playground' | 'challenge'
+  bestChallenge: null,       // best Mastery Challenge score (%)
 };
 
 function safeParse(str, fallback) {
@@ -109,6 +110,10 @@ const Store = {
   // DIKW meter: one segment per stage cleared (Data→Wisdom across 4 marks,
   // but we map 5 stages onto 4 DIKW marks by clamping).
   dikwFilled() { return Math.min(this.clearedCount(), DIKW.length); },
+
+  // ---- mastery challenge ----
+  bestChallenge() { return data.bestChallenge ?? null; },
+  setBestChallenge(pct) { if (data.bestChallenge == null || pct > data.bestChallenge) set({ bestChallenge: pct }); },
 
   // ---- theme (global) ----
   theme() { return localStorage.getItem(THEME_KEY) || 'auto'; },

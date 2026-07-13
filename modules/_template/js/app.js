@@ -17,10 +17,11 @@ const els = {
     path: document.getElementById('view-path'),
     map: document.getElementById('view-map'),
     playground: document.getElementById('view-playground'),
+    challenge: document.getElementById('view-challenge'),
   },
 };
 
-const rendered = { path: false, map: false, playground: false };
+const rendered = { path: false, map: false, playground: false, challenge: false };
 
 // ---------------- Header ----------------
 function buildDikw() {
@@ -54,12 +55,14 @@ function renderView(view) {
   if (view === 'path') renderPath(els.views.path);
   if (view === 'map') renderMap(els.views.map);
   if (view === 'playground') renderPlayground(els.views.playground);
+  if (view === 'challenge') renderChallenge(els.views.challenge);
   rendered[view] = true;
 }
 // Called by path.js when progression changes so other views rebuild lazily.
 function invalidateViews() {
   rendered.map = false;
   rendered.playground = false;
+  rendered.challenge = false;
 }
 
 // ---------------- Onboarding ----------------
