@@ -352,38 +352,92 @@ const STAGES = [
     title: 'Claude Cowork',
     tier: 'Competent',
     dikw: 'Knowledge',
-    tagline: 'Claude as an autonomous teammate: delegate, connect, oversee.',
+    tagline: 'Delegate, extend, connect, oversee — Claude as a teammate.',
     intro:
-      'Cowork is the step from “assistant that answers” to “teammate that does.” ' +
-      'The skill here is delegation: framing a task well, giving it the right ' +
-      'tools and access, and reviewing the result.',
+      'Cowork is the leap from an assistant that <em>answers</em> to a teammate that ' +
+      '<em>does</em>. This stage goes deep on four moves — how it delegates (agents, ' +
+      'subagents, multi-agent), how you extend it (tools, skills, connectors, plugins), ' +
+      'how it plugs into your systems, and how you keep sensible oversight. Each lesson ' +
+      'follows the same shape: what it is, why it matters, what to do instead of the old ' +
+      'way, and how it speeds up your workflow — with real examples.',
     lessons: [
       {
         id: 'delegation',
-        title: 'Delegating multi-step work',
+        title: 'Delegating work: agents, subagents & multi-agent',
         icon: '🤝',
         surfaces: ['cowork'],
         analogy:
           'Handing a project to a capable colleague instead of asking one question ' +
-          'at a time. You describe the outcome; they plan and run it, and check ' +
-          'back when they need you.',
+          'at a time. For a big job they pull in helpers, split the work, and bring ' +
+          'you the finished result — you set the goal and review.',
         simple: [
-          { p: '<strong>Cowork</strong> takes on whole tasks, not single questions. You describe an outcome; it breaks the work down, does it, and reports back.' },
+          { h: 'What it is' },
+          { p: '<strong>Cowork</strong> is Claude working as a teammate: you hand it an <em>outcome</em> and it plans and runs the steps. When a job is big, it spins up <strong>subagents</strong> — helpers with their own focus — and can run <strong>several agents at once</strong>. The diagram above walks through all three.' },
           { list: [
-            'It can keep working in the <strong>background</strong> — even after you close your laptop — and run scheduled work.',
-            'It can open a browser and use websites (click, type, fill forms) when a task needs that.',
-            'It coordinates <strong>sub-tasks in parallel</strong> to get through larger work faster.',
+            '<strong>Agent</strong> — one worker takes your goal from start to finish.',
+            '<strong>Subagent</strong> — the agent delegates a chunk to a helper that works in its <em>own clean context</em> and hands back just a summary (keeps the main thread tidy).',
+            '<strong>Multi-agent</strong> — an orchestrator runs several agents in parallel, then merges their work.',
           ] },
-          { p: 'Your job shifts from “doing each step” to “framing the task and reviewing the outcome.”' },
+          { h: 'Why it matters' },
+          { p: 'Your role flips from <em>doing every step</em> to <em>setting the goal and reviewing the result</em>. That is the real productivity win — a single brief can trigger an hour of work you didn’t have to babysit.' },
+          { h: 'Do this, not that' },
+          { compare: { a: { label: '❌ Chat, step by step', points: ['You ask one thing, wait, ask the next.', 'You hold the whole plan in your head.', 'You copy results between steps yourself.'] }, b: { label: '✅ Cowork, whole task', points: ['You state the outcome + what “done” looks like.', 'It plans, splits, and runs the steps.', 'It reports back; you review, not babysit.'] } } },
+          { h: 'How it speeds up your workflow' },
+          { p: '<strong>Relatable example.</strong> “Build me a competitor teardown of these 5 tools.” Instead of you running five searches and stitching notes together, Cowork sends a <em>subagent per tool</em> to gather pricing and reviews <strong>in parallel</strong>, then merges one clean report. Minutes of your attention, not a lost afternoon.' },
         ],
         mechanics: [
-          { p: 'Cowork is a Claude-Code-style agent for general knowledge work with no terminal. It plans, executes, and coordinates sub-agents across parallel workstreams.' },
+          { p: 'Cowork is a Claude-Code-style agent for general knowledge work — no terminal. It plans, executes, and coordinates sub-agents across parallel workstreams.' },
+          { h: 'The mechanics of delegation' },
           { list: [
-            '<strong>Background / remote execution</strong> — tasks continue when your device is off; scheduled work runs on its own.',
-            '<strong>Computer / browser use</strong> — it can drive a browser for tasks that touch web apps.',
-            '<strong>Cross-device</strong> — start on one device, monitor on another (desktop, web, mobile).',
+            '<strong>Subagents</strong> run in <em>isolated context windows</em> with their own tools; they return a summary, so search results and logs never clog the main thread — and they can use a cheaper, faster model (e.g. Haiku) to cut cost.',
+            '<strong>Multi-agent</strong> = an orchestrator fans work out (parallel) or pipelines it (staged), then aggregates the results.',
+            '<strong>Background / scheduled</strong> execution — work continues when your device is off; recurring jobs run on their own; it can even drive a browser for tasks that touch web apps.',
           ] },
-          { tip: 'Delegate like you would to a person: give the goal, the “done” criteria, and the context up front. A well-specified single hand-off beats many mid-task corrections.' },
+          { tip: 'Give the goal, the “done” criteria, and the context up front. One well-specified hand-off beats ten mid-task corrections.' },
+        ],
+      },
+      {
+        id: 'extend',
+        title: 'Extending Claude: tools, skills, custom skills, connectors & plugins',
+        icon: '🧩',
+        surfaces: ['chat', 'cowork', 'code'],
+        analogy:
+          'Kitting out your teammate: the built-in tools are their hands, skills are ' +
+          'recipe cards they follow, connectors are keys to your rooms, and a plugin ' +
+          'is a ready-made kit that bundles all of it.',
+        simple: [
+          { h: 'What they are' },
+          { p: 'Five ways to give Claude more ability. Knowing which is which is half the battle (the diagram above shows how they attach):' },
+          { list: [
+            '<strong>Tools</strong> — built-in actions Claude can take (read a file, run a command, search the web). The <em>hands</em>.',
+            '<strong>Skills</strong> — reusable know-how for a kind of task, loaded only when relevant. The <em>recipe cards</em>.',
+            '<strong>Custom Skills</strong> — your own recipe cards: package a process you repeat.',
+            '<strong>Connectors</strong> — access to an outside system (next lesson). The <em>keys</em>.',
+            '<strong>Plugins</strong> — a boxed set that bundles skills, commands, agents and connectors so a whole team gets the same setup.',
+          ] },
+          { h: 'Why this, not that' },
+          { compare: { a: { label: 'A Skill = know-how', points: ['Knows <em>how</em> to do a task your way.', 'e.g. your brand’s fonts, colours, tone.', 'Ships with Claude, or you author it.'] }, b: { label: 'A Connector = access', points: ['Reaches an <em>external system</em>.', 'e.g. your Google Drive or GitHub.', 'A live link, not knowledge.'] } } },
+          { p: 'They combine: a “monthly report” <strong>Skill</strong> knows your format, a Drive <strong>Connector</strong> fetches the numbers, and a team <strong>Plugin</strong> hands both to everyone on day one.' },
+          { h: 'Do this, not that' },
+          { list: [
+            'Re-typing the same instructions each time? → make a <strong>Custom Skill</strong>, don’t re-explain.',
+            'Copy-pasting from another app? → add a <strong>Connector</strong>, don’t shuttle data.',
+            'Your team each configures the same setup by hand? → ship a <strong>Plugin</strong>, don’t repeat the work.',
+          ] },
+          { h: 'How it speeds up your workflow' },
+          { p: '<strong>Relatable example.</strong> You write investor updates monthly. Package the exact structure and tone as a <strong>Custom Skill</strong> once — now every update comes out in your format without re-briefing, and a <strong>Plugin</strong> shares it with your ops team so their drafts match too.' },
+        ],
+        mechanics: [
+          { h: 'How a Skill is built' },
+          { p: 'A Skill is a folder with a <code>SKILL.md</code> file: YAML frontmatter (<code>name</code> + a <code>description</code> ≤ 200 chars that tells Claude <em>when</em> to use it), plus optional <code>scripts/</code>, <code>references/</code>, and <code>assets/</code>. On trigger, Claude reads it into context (progressive disclosure). Author them in Claude Code, upload via the API, or add them in claude.ai settings.' },
+          { code: '---\nname: monthly-investor-update\ndescription: Draft the monthly investor update in Acme’s format and tone. Use when asked for an investor update or MRR summary.\n---\n# Steps\n1. Pull the metrics table from the connected sheet.\n2. Lead with the three numbers that moved most.\n3. Keep it under one page; plain English.' },
+          { h: 'Tools · Connectors · Plugins' },
+          { list: [
+            '<strong>Tools</strong> are the built-in primitives (in Code: <code>Read</code>/<code>Write</code>/<code>Edit</code>/<code>Bash</code>/<code>Glob</code>/<code>Grep</code>/<code>WebSearch</code>/<code>WebFetch</code>).',
+            '<strong>Connectors</strong> are MCP servers (next lesson).',
+            '<strong>Plugins</strong> (Claude Code, since late 2025) are <em>versioned bundles</em> of skills + subagents + slash commands + hooks + output styles + MCP servers, installed from marketplaces (<code>claude plugin install @anthropic/…</code>; the official marketplace is built in, community ones are added and safety-screened).',
+          ] },
+          { tip: 'Rule of thumb: Tool = an action · Skill = knowledge · Connector = access · Plugin = a shareable bundle of all three.' },
         ],
       },
       {
@@ -396,23 +450,51 @@ const STAGES = [
           'shared drive, the calendar — so they stop asking you to fetch things ' +
           'and just get them.',
         simple: [
-          { p: 'By default Claude only knows what you tell it. A <strong>Connector</strong> plugs Claude into an outside system so it can read and act there directly.' },
-          { list: [
-            'Connect things like GitHub, a database, a knowledge base, or a design tool.',
-            'Then Claude can pull data and take actions in that system without copy-paste.',
-            'Anthropic maintains a vetted directory of connectors; they work across chat, desktop, mobile, and Code.',
-          ] },
-          { p: 'The moment you notice you’re shuttling data between Claude and another tool, that’s a sign to add a connector.' },
+          { h: 'What it is' },
+          { p: 'By default Claude only knows what you tell it. A <strong>Connector</strong> plugs it into an outside system — GitHub, Google Drive, a database, Slack — so it can <em>read and act there directly</em>.' },
+          { h: 'Why this instead of copy-paste' },
+          { compare: { a: { label: '❌ Without a Connector', points: ['Export the data, copy it into chat.', 'Paste Claude’s reply back into the app.', 'It’s stale, partial, and all manual.'] }, b: { label: '✅ With a Connector', points: ['Just ask — Claude pulls what it needs.', 'It can act back in the system too.', 'Always live, complete, hands-free.'] } } },
+          { h: 'How it speeds up your workflow' },
+          { p: '<strong>Relatable example.</strong> “Summarise this week’s support tickets and flag the angry ones.” Without a connector you export a CSV and paste it in; with a helpdesk connector you just ask — and it can even reply to the tickets. Connectors work the same across chat, desktop, mobile, and Code, from a directory Anthropic vets.' },
+          { p: 'The signal to add one: the moment you notice you’re shuttling data between Claude and another tool.' },
         ],
         mechanics: [
-          { p: 'Connectors are verified <strong>MCP (Model Context Protocol)</strong> servers. MCP is an open standard: a server exposes <strong>tools</strong> (callable actions) and <strong>resources</strong> (data/context), and Claude calls them through the loop.' },
+          { p: 'Connectors are verified <strong>MCP (Model Context Protocol)</strong> servers — MCP is the open “USB-C for AI”: one protocol, many tools, many clients. A server exposes <strong>tools</strong> (callable actions) and <strong>resources</strong> (data/context), and Claude calls them through the loop.' },
           { list: [
             'They work across Claude.ai, Desktop, Mobile, and Claude Code.',
             'Remote connectors (hosted MCP servers) and local/desktop MCP extensions are both supported.',
             'Anthropic’s directory vets connectors for security, reliability, and compatibility.',
           ] },
           { p: 'In Claude Code you configure MCP servers in project settings; in the apps you enable connectors from the directory. Same protocol underneath.' },
-          { tip: 'MCP is the “USB-C for tools”: build/enable once, and any Claude surface can use it.' },
+          { tip: 'Auth for hosted MCP servers is usually OAuth (log in through the provider), not the service’s raw API key.' },
+        ],
+      },
+      {
+        id: 'background',
+        title: 'Background, scheduled & parallel work',
+        icon: '⏱️',
+        surfaces: ['cowork'],
+        analogy:
+          'A colleague who keeps working after you’ve left the office and hands you ' +
+          'the finished work in the morning.',
+        simple: [
+          { h: 'What it is' },
+          { p: 'Cowork doesn’t need you watching. It keeps going when you close your laptop, can run <strong>scheduled</strong> jobs on its own, and splits work to run <strong>in parallel</strong>.' },
+          { h: 'Why it matters' },
+          { p: 'Your time and the agent’s time stop being the same clock. You kick something off and get on with your day.' },
+          { h: 'Do this, not that' },
+          { compare: { a: { label: '❌ Synchronous (you wait)', points: ['Sit and watch each step finish.', 'Long jobs block your afternoon.', 'Nothing happens while you’re away.'] }, b: { label: '✅ Asynchronous (it runs it)', points: ['Kick it off, check back later.', 'Long jobs run in the background.', 'Scheduled work happens on its own.'] } } },
+          { h: 'How it speeds up your workflow' },
+          { p: '<strong>Relatable example.</strong> “Every Monday 8am, compile last week’s numbers into a deck.” Set it once and it’s waiting for you each week. Or “research these 12 vendors” — it runs the twelve <em>in parallel</em> overnight and you review one table in the morning.' },
+        ],
+        mechanics: [
+          { list: [
+            '<strong>Background / remote execution</strong> — tasks continue when your device is off.',
+            '<strong>Scheduled runs</strong> — recurring work fires on a cadence.',
+            '<strong>Parallel subagents</strong> — independent parts run at the same time.',
+            '<strong>Cross-device</strong> — start on desktop, monitor on web or mobile.',
+          ] },
+          { tip: 'Best fit: work that’s slow but not urgent-to-watch — research sweeps, recurring reports, batch drafting.' },
         ],
       },
       {
@@ -424,56 +506,75 @@ const STAGES = [
           'A good manager doesn’t watch every keystroke, but does review the work ' +
           'and gate the risky moves. Autonomy with checkpoints.',
         simple: [
-          { p: 'Autonomy is powerful, so calibrate how much rope you give — more for low-risk work, less for anything hard to undo.' },
+          { h: 'What it is' },
+          { p: 'How much rope you give the agent — matched to how risky the action is. Think a <strong>trust dial</strong>, not an on/off switch.' },
+          { h: 'Why this, not that' },
+          { compare: { a: { label: 'Low-stakes / reversible', points: ['Let it run, review after.', 'e.g. draft a doc, summarise, research.', 'Undo is cheap if it’s off.'] }, b: { label: 'High-stakes / hard to undo', points: ['Approve before it acts.', 'e.g. send to a client, delete, publish.', 'A mistake is expensive.'] } } },
+          { h: 'Do this, not that' },
           { list: [
-            'For reversible, low-stakes tasks, let it run and review the result.',
-            'For risky or irreversible actions, keep a checkpoint where you approve first.',
-            'Always review the output — you’re accountable for it, agent or not.',
+            'Don’t rubber-stamp — you’re accountable for the output, agent or not.',
+            'Don’t micromanage reversible work — that throws away the speed you came for.',
+            'Start cautious on a new kind of task; loosen as you build confidence.',
           ] },
-          { p: 'Think “trust dial,” not on/off. Start cautious; loosen as you build confidence in a given task.' },
+          { h: 'How it adds up' },
+          { p: 'Trust is <em>per task type</em>. Once you’ve watched it draft ten solid summaries, you stop reviewing those closely — and reinvest that attention where it actually matters.' },
         ],
         mechanics: [
-          { p: 'Oversight is a spectrum, and the agent surfaces controls for it: approval checkpoints on sensitive actions, the ability to interrupt and redirect, and reviewable output/artifacts.' },
-          { p: 'The same idea is formalized in Claude Code as <strong>permission modes</strong> (next stage): a dial from “ask me every time” to “run autonomously.” Cowork applies the concept through task hand-off and review rather than terminal prompts.' },
-          { tip: 'Match oversight to reversibility: gate hard-to-undo actions (sending, deleting, publishing); let easily-reversible work flow.' },
+          { p: 'Oversight is a spectrum, and the agent surfaces controls for it: approval checkpoints on sensitive actions, the ability to interrupt and redirect, and reviewable outputs/artifacts.' },
+          { p: 'The same idea is formalised in Claude Code as <strong>permission modes</strong> (next stage): a dial from “ask me every time” to “run autonomously.” Cowork applies it through task hand-off and review rather than terminal prompts.' },
+          { tip: 'Match oversight to reversibility: gate hard-to-undo, outward-facing actions (sending, deleting, publishing); let easily-reversible work flow.' },
         ],
       },
     ],
     quiz: [
       {
-        q: 'The core skill shift when moving to Cowork is:',
+        q: 'When the agent hands a chunk of work to a subagent, the subagent…',
         options: [
-          'Writing faster',
-          'From doing each step to framing a task and reviewing the outcome',
-          'Memorizing model IDs',
-          'Avoiding tools',
+          'shares the whole conversation and clutters it',
+          'works in its own clean context and returns just a summary',
+          'always uses the most expensive model',
+          'takes over reviewing the work for you',
         ],
         answer: 1,
-        why: 'Cowork runs whole tasks; your role becomes good delegation and review.',
+        why: 'Subagents run in an isolated context and hand back a summary — keeping the main thread clean (and can use cheaper models).',
         tier: 'Competent',
       },
       {
-        q: 'A Connector is, underneath, a:',
-        options: [
-          'Bigger context window',
-          'Verified MCP server exposing tools and resources',
-          'Type of Artifact',
-          'Billing plan',
-        ],
+        q: 'Several agents work in parallel on different parts of one job, then their results merge. That pattern is:',
+        options: ['A single agent', 'Multi-agent orchestration', 'A connector', 'A plugin'],
         answer: 1,
-        why: 'Connectors are vetted MCP servers — the open standard for exposing external tools and data to Claude.',
+        why: 'An orchestrator running several agents in parallel and merging results is multi-agent orchestration.',
         tier: 'Competent',
       },
       {
-        q: 'Which action most deserves an approval checkpoint before the agent runs it?',
+        q: 'A “brand guidelines” Skill and a “Google Drive” Connector differ because…',
         options: [
-          'Reading a file',
-          'Summarizing a document',
-          'Publishing a post to a live public account',
-          'Searching the web',
+          'they’re really the same thing',
+          'a Skill is know-how (how to do a task); a Connector is access to a system',
+          'a Connector is just a cheaper Skill',
+          'a Skill needs the internet and a Connector doesn’t',
         ],
-        answer: 2,
-        why: 'Oversight should track reversibility — gate hard-to-undo, outward-facing actions.',
+        answer: 1,
+        why: 'Skill = reusable knowledge; Connector = a live link to an external system. They often combine.',
+        tier: 'Competent',
+      },
+      {
+        q: 'You keep re-typing the same 8-step process every week. The right fix is:',
+        options: ['A bigger model', 'A Custom Skill', 'A permission mode', 'Just wait for it to learn'],
+        answer: 1,
+        why: 'Package a repeated procedure as a Custom Skill (a SKILL.md folder) so Claude follows it on demand — no re-explaining.',
+        tier: 'Competent',
+      },
+      {
+        q: 'A Plugin is best described as:',
+        options: [
+          'A single slash command',
+          'A versioned bundle of skills, commands, subagents, hooks and connectors',
+          'A faster model',
+          'A type of Artifact',
+        ],
+        answer: 1,
+        why: 'Plugins bundle several pieces into one installable, shareable unit — ideal for giving a whole team the same setup.',
         tier: 'Proficient',
       },
       {
@@ -486,6 +587,18 @@ const STAGES = [
         ],
         answer: 0,
         why: 'Shuttling data between Claude and a system is the classic signal to connect that system via MCP.',
+        tier: 'Proficient',
+      },
+      {
+        q: 'Which action most deserves an approval checkpoint before the agent runs it?',
+        options: [
+          'Reading a file',
+          'Summarising a document',
+          'Publishing a post to a live public account',
+          'Searching the web',
+        ],
+        answer: 2,
+        why: 'Oversight should track reversibility — gate hard-to-undo, outward-facing actions.',
         tier: 'Proficient',
       },
     ],
@@ -840,7 +953,8 @@ const CONCEPT_MAP = {
 
     { id: 'models', label: 'Models', cat: 'concept', def: 'Fable / Opus / Sonnet / Haiku — capability vs. cost & speed.', ref: { stage: 'foundations', lesson: 'models' } },
     { id: 'tools', label: 'Tools', cat: 'concept', def: 'The built-in actions: Read/Write/Edit/Bash/Glob/Grep/Web.', ref: { stage: 'code', lesson: 'tools' } },
-    { id: 'skills', label: 'Skills', cat: 'concept', def: 'On-demand bundles of reusable know-how (progressive disclosure).', ref: { stage: 'chat', lesson: 'skills-in-apps' } },
+    { id: 'skills', label: 'Skills', cat: 'concept', def: 'On-demand bundles of reusable know-how (progressive disclosure). Author your own as Custom Skills.', ref: { stage: 'chat', lesson: 'skills-in-apps' } },
+    { id: 'plugins', label: 'Plugins', cat: 'concept', def: 'Versioned bundles of skills, commands, subagents, hooks & connectors — shared via marketplaces.', ref: { stage: 'cowork', lesson: 'extend' } },
     { id: 'mcp', label: 'Connectors / MCP', cat: 'concept', def: 'Open standard linking Claude to external tools & data.', ref: { stage: 'cowork', lesson: 'connectors' } },
     { id: 'hooks', label: 'Hooks', cat: 'concept', def: 'Deterministic rules fired at lifecycle events, regardless of the model.', ref: { stage: 'code', lesson: 'skills-commands-mcp-hooks' } },
     { id: 'memory', label: 'Memory / CLAUDE.md', cat: 'concept', def: 'Persistent context & conventions; context compaction.', ref: { stage: 'code', lesson: 'memory' } },
@@ -857,6 +971,8 @@ const CONCEPT_MAP = {
     { from: 'skills', to: 'chat', label: 'extends' },
     { from: 'skills', to: 'cowork', label: 'extends' },
     { from: 'skills', to: 'code', label: 'extends' },
+    { from: 'plugins', to: 'skills', label: 'bundle' },
+    { from: 'plugins', to: 'code', label: 'installed in' },
     { from: 'mcp', to: 'cowork', label: 'connects' },
     { from: 'mcp', to: 'code', label: 'connects' },
     { from: 'mcp', to: 'chat', label: 'connects' },
@@ -921,6 +1037,30 @@ const DIAGRAMS = {
       { active: ['tool'], caption: 'The tool runs (e.g. an Edit).' },
       { active: ['post'], caption: 'PostToolUse — react AFTER (e.g. run the linter).' },
       { active: ['stop'], caption: 'Stop / SessionEnd — clean up when the work ends.' },
+    ],
+  },
+  agents: {
+    id: 'agents',
+    title: 'Agent → subagent → multi-agent',
+    kind: 'agents',
+    steps: [
+      { mode: 'single', active: ['you', 'agent', 'res'], caption: 'Simplest: you hand a goal to one agent; it does the work and reports back.' },
+      { mode: 'subagent', active: ['agent', 'sub'], caption: 'For a heavy side-task, the agent spawns a subagent — a helper with its own clean context.' },
+      { mode: 'subagent', active: ['sub', 'agent', 'res'], caption: 'The subagent does the digging and returns just a summary — your main thread stays tidy.' },
+      { mode: 'multiagent', active: ['orch', 'pa', 'pb', 'pc'], caption: 'Multi-agent: an orchestrator runs several agents at once, each on a different part.' },
+      { mode: 'multiagent', active: ['merge'], caption: 'Their results merge into one — big jobs finish faster.' },
+    ],
+  },
+  extensions: {
+    id: 'extensions',
+    title: 'Five ways to extend Claude',
+    kind: 'extensions',
+    steps: [
+      { active: ['core'], caption: 'Claude already knows a lot — but you can extend it in a few ways.' },
+      { active: ['core', 'tools'], caption: 'Tools — the built-in actions: read, write, run, search. The hands.' },
+      { active: ['core', 'skills'], caption: 'Skills — reusable know-how for a task. Author your own: Custom Skills.' },
+      { active: ['core', 'mcp'], caption: 'Connectors (MCP) — access to your systems: Drive, GitHub, databases.' },
+      { active: ['core', 'plugins'], caption: 'Plugins — a boxed set bundling skills, commands, agents & connectors for a team.' },
     ],
   },
 };

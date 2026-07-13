@@ -7,8 +7,10 @@
 // Which lessons embed an animated diagram (lesson id -> diagram id).
 const LESSON_DIAGRAM = {
   harness: 'harness',
-  'multi-agent': 'multiagent',
+  delegation: 'agents',
+  extend: 'extensions',
   connectors: 'mcp',
+  'multi-agent': 'multiagent',
   'skills-commands-mcp-hooks': 'hooks',
 };
 

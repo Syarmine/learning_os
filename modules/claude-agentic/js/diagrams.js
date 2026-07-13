@@ -92,6 +92,48 @@ const SCAFFOLDS = {
     s += `</svg>`;
     return s;
   },
+  agents() {
+    const single = `<g data-mode="single">
+      ${box('you', 30, 92, 120, 52, 'You', 'set the goal')}
+      ${arrow(150, 118, 240, 118)}
+      ${box('agent', 240, 92, 120, 52, 'Agent', 'does the work')}
+      ${arrow(360, 118, 450, 118)}
+      ${box('res', 450, 92, 120, 52, 'Result', 'reports back')}
+    </g>`;
+    const sub = `<g data-mode="subagent" style="display:none">
+      ${box('you', 20, 44, 110, 48, 'You')}
+      ${arrow(130, 68, 245, 68)}
+      ${box('agent', 245, 44, 110, 48, 'Agent')}
+      ${arrow(355, 68, 470, 68)}
+      ${box('res', 470, 44, 110, 48, 'Result')}
+      ${arrow(285, 92, 285, 152)}
+      <text class="dg-sub" x="255" y="126" text-anchor="end">delegate</text>
+      ${arrow(325, 152, 325, 92)}
+      <text class="dg-sub" x="345" y="126" text-anchor="start">summary</text>
+      ${box('sub', 245, 152, 110, 48, 'Subagent', 'own clean context')}
+    </g>`;
+    const multi = `<g data-mode="multiagent" style="display:none">
+      ${box('orch', 245, 8, 110, 46, 'Orchestrator', 'splits + coordinates')}
+      ${arrow(300, 54, 95, 96)} ${arrow(300, 54, 300, 96)} ${arrow(300, 54, 505, 96)}
+      ${box('pa', 40, 96, 110, 46, 'Agent A')}
+      ${box('pb', 245, 96, 110, 46, 'Agent B')}
+      ${box('pc', 450, 96, 110, 46, 'Agent C')}
+      ${arrow(95, 142, 300, 184)} ${arrow(300, 142, 300, 184)} ${arrow(505, 142, 300, 184)}
+      ${box('merge', 245, 184, 110, 46, 'Merge', 'combined result')}
+    </g>`;
+    return `<svg viewBox="0 0 600 240" role="img" aria-label="Agent, subagent and multi-agent">${single}${sub}${multi}</svg>`;
+  },
+  extensions() {
+    return `<svg viewBox="0 0 600 262" role="img" aria-label="Ways to extend Claude">
+      ${arrow(160, 66, 236, 120)} ${arrow(440, 66, 364, 120)}
+      ${arrow(160, 196, 236, 146)} ${arrow(440, 196, 364, 146)}
+      ${box('tools', 20, 40, 140, 52, 'Tools', 'built-in actions')}
+      ${box('skills', 440, 40, 140, 52, 'Skills', 'reusable know-how')}
+      ${box('mcp', 20, 170, 140, 52, 'Connectors', 'MCP · your systems')}
+      ${box('plugins', 440, 170, 140, 52, 'Plugins', 'bundle the above')}
+      ${box('core', 233, 104, 134, 58, 'Claude', 'the agent')}
+    </svg>`;
+  },
 };
 
 function mountDiagram(diagramId, slot) {

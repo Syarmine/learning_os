@@ -6,17 +6,33 @@ function esc(s) {
   ));
 }
 
-// Content-block renderer. Blocks authored in data.js are trusted; `p`, `list`,
-// `steps`, and `tip` may contain inline <code>/<strong>/<em>. `code` is escaped.
+// Content-block renderer. Blocks authored in data.js are trusted; text fields
+// may contain inline <code>/<strong>/<em>. `code` is escaped.
+//   { p } { list } { steps } { code } { tip }
+//   { h:'Subheading' }
+//   { compare: { a:{label, points:[…]}, b:{label, points:[…]} } }   two side-by-side cards
 function renderBlocks(blocks = []) {
   return blocks.map((b) => {
     if (b.p) return `<p class="block-p">${b.p}</p>`;
+    if (b.h) return `<h4 class="block-h">${b.h}</h4>`;
     if (b.list) return `<ul class="block-list">${b.list.map((i) => `<li>${i}</li>`).join('')}</ul>`;
     if (b.steps) return `<ol class="block-steps">${b.steps.map((i) => `<li>${i}</li>`).join('')}</ol>`;
     if (b.code) return `<pre class="block-code">${esc(b.code)}</pre>`;
     if (b.tip) return `<div class="block-tip"><span>${b.tip}</span></div>`;
+    if (b.compare) return renderCompare(b.compare);
     return '';
   }).join('');
+}
+
+// Two-column "this, not that" comparison. `a` reads as the weaker/old way,
+// `b` as the better/new way (styled accordingly).
+function renderCompare(c) {
+  const col = (side, kind) => `
+    <div class="cmp-col ${kind}">
+      <div class="cmp-label">${side.label}</div>
+      <ul class="cmp-points">${(side.points || []).map((p) => `<li>${p}</li>`).join('')}</ul>
+    </div>`;
+  return `<div class="block-compare">${col(c.a, 'before')}<div class="cmp-vs">vs</div>${col(c.b, 'after')}</div>`;
 }
 
 function surfacePills(surfaces = []) {
