@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Working Agentically with Claude — Interactive Course</title>
+  <meta name="description" content="An interactive, visual path from “what is an AI agent?” to orchestrating Claude across chat, Cowork, and Code." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ===================== Onboarding overlay ===================== -->
+  <div id="onboarding" class="overlay" hidden>
+    <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="ob-title">
+      <div class="overlay-eyebrow">Welcome</div>
+      <h1 id="ob-title">Working Agentically with Claude</h1>
+      <p class="overlay-lede">A guided path from “what is an agent?” to orchestrating Claude across
+        <strong>chat</strong>, <strong>Cowork</strong>, and <strong>Code</strong>. Pick how you'd like it explained —
+        you can switch anytime.</p>
+      <div class="ob-choices" id="ob-choices">
+        <button class="ob-choice" data-lens="simple" data-start="foundations">
+          <span class="ob-emoji">🌱</span>
+          <span class="ob-choice-title">New to AI tools</span>
+          <span class="ob-choice-sub">Plain language, analogies first. Start at the beginning.</span>
+        </button>
+        <button class="ob-choice" data-lens="simple" data-start="chat">
+          <span class="ob-emoji">⚡</span>
+          <span class="ob-choice-title">Power user</span>
+          <span class="ob-choice-sub">You use Claude daily. Jump into the app surfaces.</span>
+        </button>
+        <button class="ob-choice" data-lens="mechanics" data-start="code">
+          <span class="ob-emoji">🛠️</span>
+          <span class="ob-choice-title">Developer</span>
+          <span class="ob-choice-sub">Show the mechanics — files, modes, config.</span>
+        </button>
+      </div>
+      <button class="ob-skip" id="ob-skip">Just let me explore →</button>
+    </div>
+  </div>
+
+  <!-- ===================== Header ===================== -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" title="Back to all modules">
+        <span class="brand-mark">🧭</span>
+        <span class="brand-text">
+          <span class="brand-title">Agentic Claude</span>
+          <span class="brand-sub">chat · Cowork · Code</span>
+        </span>
+      </a>
+
+      <div class="progress-cluster" aria-live="polite">
+        <div class="dikw" id="dikw-meter" title="Your journey: Data → Wisdom">
+          <!-- filled by app.js -->
+        </div>
+        <div class="tier-badge" id="tier-badge" title="Your current mastery tier">
+          <span class="tier-dot"></span>
+          <span class="tier-label">Novice</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="lens-toggle" id="lens-toggle" role="group" aria-label="Explanation depth">
+          <button class="lens-btn" data-lens="simple" aria-pressed="true">Explain it simply</button>
+          <button class="lens-btn" data-lens="mechanics" aria-pressed="false">Show the mechanics</button>
+        </div>
+        <button class="icon-btn" id="theme-toggle" title="Toggle light / dark" aria-label="Toggle theme">🌗</button>
+        <button class="icon-btn" id="reset-btn" title="Reset your progress" aria-label="Reset progress">↺</button>
+      </div>
+    </div>
+
+    <nav class="viewnav" id="viewnav" aria-label="Views">
+      <button class="viewnav-btn is-active" data-view="path">📚 Guided Path</button>
+      <button class="viewnav-btn" data-view="map">🕸️ Concept Map</button>
+      <button class="viewnav-btn" data-view="playground">🎛️ Decision Playground</button>
+    </nav>
+  </header>
+
+  <!-- ===================== Main views ===================== -->
+  <main id="app">
+    <section class="view" id="view-path" data-view="path"></section>
+    <section class="view" id="view-map" data-view="map" hidden></section>
+    <section class="view" id="view-playground" data-view="playground" hidden></section>
+  </main>
+
+  <footer class="app-footer">
+    <p>An interactive learning module · content reflects Claude's products as of mid-2026.
+       Built as a self-contained static site — no accounts, no tracking, progress saved only in your browser.</p>
+  </footer>
+
+  <!-- Classic scripts loaded in dependency order (share top-level scope).
+       This works from file:// — ES module imports do not (CORS-blocked). -->
+  <script src="js/data.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/diagrams.js"></script>
+  <script src="js/conceptmap.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/path.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

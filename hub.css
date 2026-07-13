@@ -1,0 +1,46 @@
+/* hub.css — landing page for the learning modules. Theme-aware, self-contained. */
+:root {
+  --bg:#f5f4f1; --surface:#fff; --surface-2:#faf9f6; --border:#e2ddd3; --border-strong:#d3ccbe;
+  --text:#241f1a; --text-2:#5c554c; --text-3:#8a8177;
+  --accent:#c8632f; --accent-2:#2f6f8f; --accent-3:#7a5cc0;
+  --shadow:0 1px 2px rgba(30,25,20,.05),0 10px 30px rgba(30,25,20,.07);
+  --radius:16px; --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#16130f; --surface:#211c16; --surface-2:#27221a; --border:#3a332a; --border-strong:#4a4237;
+    --text:#f1ece3; --text-2:#c3bbae; --text-3:#8f877b;
+    --accent:#e6864f; --accent-2:#5aa6c4; --accent-3:#a98ce0;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:900px; margin:0 auto; padding:3rem 1.2rem 4rem; }
+.hub-head { text-align:center; margin-bottom:2.4rem; }
+.hub-badge { font-size:.75rem; text-transform:uppercase; letter-spacing:.1em; font-weight:800; color:var(--accent); }
+.hub-head h1 { font-size:clamp(2rem,6vw,3rem); margin:.4rem 0;
+  background:linear-gradient(120deg,var(--accent),var(--accent-3) 55%,var(--accent-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:-.02em; }
+.hub-head p { color:var(--text-2); max-width:52ch; margin:.4rem auto 0; }
+.mark { font-size:2.6rem; }
+.cards { display:grid; gap:1.1rem; grid-template-columns:1fr; }
+@media (min-width:640px){ .cards { grid-template-columns:1fr 1fr; } }
+.card { display:block; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.4rem; box-shadow:var(--shadow); transition:transform .18s,border-color .18s; }
+.card.ready:hover { transform:translateY(-3px); border-color:var(--accent); }
+.card.planned { opacity:.6; cursor:default; }
+.card-emoji { font-size:2rem; }
+.card h2 { font-size:1.2rem; margin:.6rem 0 .3rem; }
+.card p { color:var(--text-2); font-size:.92rem; margin:.3rem 0 .8rem; }
+.tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+.tag { font-size:.68rem; font-weight:700; color:var(--text-3); border:1px solid var(--border-strong);
+  padding:.12rem .5rem; border-radius:999px; }
+.status { float:right; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; }
+.status.ready { color:var(--accent-2); }
+.status.planned { color:var(--text-3); }
+.card-cta { margin-top:.9rem; font-weight:800; color:var(--accent); font-size:.9rem; }
+.hub-foot { text-align:center; color:var(--text-3); font-size:.82rem; margin-top:2.4rem; }
+.hub-foot code { background:var(--surface-2); border:1px solid var(--border); padding:.1em .4em; border-radius:5px; font-size:.85em; }
